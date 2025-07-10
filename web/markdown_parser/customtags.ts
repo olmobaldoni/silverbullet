@@ -29,3 +29,8 @@ export const DirectiveTag = Tag.define();
 
 export const SubscriptTag = Tag.define();
 export const SuperscriptTag = Tag.define();
+
+// Math rendering tags
+export const InlineMathTag = Tag.define();
+export const BlockMathTag = Tag.define();
+export const MathContentTag = Tag.define();

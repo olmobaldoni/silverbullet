@@ -6,12 +6,12 @@ import {
   removeParentPointers,
   renderToText,
   traverseTree,
-} from "@silverbulletmd/silverbullet/lib/tree";
-import { encodeRef, parseRef } from "@silverbulletmd/silverbullet/lib/page_ref";
+} from "../../plug-api/lib/tree.ts";
+import { encodeRef, parseRef } from "../../plug-api/lib/page_ref.ts";
 import { Fragment, renderHtml, type Tag } from "./html_render.ts";
-import { isLocalPath } from "@silverbulletmd/silverbullet/lib/resolve";
+import { isLocalPath } from "../../plug-api/lib/resolve.ts";
 import * as TagConstants from "../../plugs/index/constants.ts";
-import { extractHashtag } from "@silverbulletmd/silverbullet/lib/tags";
+import { extractHashtag } from "../../plug-api/lib/tags.ts";
 import { justifiedTableRender } from "./justified_tables.ts";
 import type { PageMeta } from "../../type/index.ts";
 
@@ -491,6 +491,30 @@ function render(
         },
         body: renderToText(t),
       };
+
+    // Math rendering
+    case "InlineMath":
+      return {
+        name: "span",
+        attrs: {
+          class: "sb-math-inline",
+          "data-math": renderToText(findNodeOfType(t, "MathContent")!),
+        },
+        body: renderToText(t),
+      };
+    case "BlockMath":
+      return {
+        name: "div",
+        attrs: {
+          class: "sb-math-block",
+          "data-math": renderToText(findNodeOfType(t, "MathContent")!),
+        },
+        body: renderToText(t),
+      };
+    case "MathContent":
+      return null; // Don't render content directly
+    case "MathMark":
+      return null; // Don't render markers
 
     // Text
     case undefined:

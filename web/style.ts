@@ -55,5 +55,8 @@ export default function highlightStyles() {
 
     { tag: ct.DirectiveMarkTag, class: "sb-directive-mark" },
     { tag: ct.DirectiveTag, class: "sb-directive" },
+    { tag: ct.InlineMathTag, class: "sb-math-inline-syntax" },
+    { tag: ct.BlockMathTag, class: "sb-math-block-syntax" },
+    { tag: ct.MathContentTag, class: "sb-math-content" },
   ]);
 }

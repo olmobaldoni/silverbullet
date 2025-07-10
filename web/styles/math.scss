@@ -1,0 +1,93 @@
+/* Math rendering styles */
+.sb-math-inline {
+  display: inline-block;
+  font-size: 1em !important;
+  vertical-align: baseline;
+  line-height: 1;
+}
+
+.sb-math-block {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+  font-size: 1em !important;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* KaTeX overrides to match theme */
+.katex {
+  font-size: 1em !important;
+}
+
+.sb-math-inline .katex,
+.sb-math-block .katex {
+  color: inherit;
+}
+
+/* Dark mode KaTeX fixes */
+@media (prefers-color-scheme: dark) {
+
+  .sb-math-inline .katex,
+  .sb-math-block .katex {
+    color: var(--editor-text-color, #ffffff);
+  }
+
+  .katex .base {
+    color: inherit;
+  }
+}
+
+/* Fallback styles for when KaTeX is not available */
+.sb-math-inline:not(.katex-rendered),
+.sb-math-block:not(.katex-rendered) {
+  font-family: 'Computer Modern', 'Latin Modern Math', 'Times New Roman', serif;
+  font-style: italic;
+  padding: 2px 4px;
+  background-color: var(--editor-background-color, #f9f9f9);
+  border: 1px solid var(--editor-border-color, #ddd);
+  border-radius: 3px;
+}
+
+.sb-math-block:not(.katex-rendered) {
+  padding: 8px;
+  margin: 1em 0;
+}
+
+/* Error styles */
+.sb-math-inline.math-error,
+.sb-math-block.math-error {
+  color: #cc0000 !important;
+  background-color: rgba(204, 0, 0, 0.1) !important;
+  border: 1px solid #cc0000 !important;
+  border-radius: 3px;
+  font-family: monospace;
+}
+
+.sb-math-inline .katex-error,
+.sb-math-block .katex-error {
+  color: #cc0000;
+  background-color: rgba(204, 0, 0, 0.1);
+}
+
+/* Cursor interaction styles */
+.sb-math-inline:hover,
+.sb-math-block:hover {
+  outline: 1px solid var(--editor-cursor-color, #007acc);
+  outline-offset: 1px;
+}
+
+/* Loading state */
+.sb-math-inline.math-loading,
+.sb-math-block.math-loading {
+  opacity: 0.6;
+  background-color: var(--editor-background-color, #f5f5f5);
+}
+
+/* Responsive math blocks */
+@media (max-width: 600px) {
+  .sb-math-block {
+    font-size: 0.9em;
+    margin: 0.5em 0;
+  }
+}
