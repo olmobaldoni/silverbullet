@@ -6,12 +6,12 @@ import {
   removeParentPointers,
   renderToText,
   traverseTree,
-} from "@silverbulletmd/silverbullet/lib/tree";
-import { encodeRef, parseRef } from "@silverbulletmd/silverbullet/lib/page_ref";
+} from "../../plug-api/lib/tree.ts";
+import { encodeRef, parseRef } from "../../plug-api/lib/page_ref.ts";
 import { Fragment, renderHtml, type Tag } from "./html_render.ts";
-import { isLocalPath } from "@silverbulletmd/silverbullet/lib/resolve";
+import { isLocalPath } from "../../plug-api/lib/resolve.ts";
 import * as TagConstants from "../../plugs/index/constants.ts";
-import { extractHashtag } from "@silverbulletmd/silverbullet/lib/tags";
+import { extractHashtag } from "../../plug-api/lib/tags.ts";
 import { justifiedTableRender } from "./justified_tables.ts";
 import type { PageMeta } from "../../type/index.ts";
 
@@ -138,6 +138,20 @@ function render(
     // Code blocks
     case "FencedCode":
     case "CodeBlock": {
+      // Check if this is a math block
+      const text = renderToText(t);
+      if (text.startsWith('$$') && text.endsWith('$$')) {
+        const equation = text.replace(/^\$\$([\s\S]*?)\$\$$/s, '$1').trim();
+        return {
+          name: "div",
+          attrs: {
+            class: "katex-display",
+            "data-equation": equation,
+          },
+          body: `$$${equation}$$`,
+        };
+      }
+      
       // Clear out top-level indent blocks
       const lang = findNodeOfType(t, "CodeInfo");
       t.children = t.children!.filter((c) => c.type);
@@ -182,11 +196,33 @@ function render(
         name: "del",
         body: cleanTags(mapRender(t.children!)),
       };
-    case "InlineCode":
+    case "InlineCode": {
+      // Check if this is a math equation
+      const text = renderToText(t);
+      if (text.startsWith('$') && text.endsWith('$')) {
+        const equation = text.replace(/^\$\$?(.+?)\$\$?$/s, '$1');
+        const displayMode = text.startsWith('$$');
+        try {
+          // Note: KaTeX rendering will be handled by the client-side widget
+          // This is a fallback for server-side rendering
+          return {
+            name: "span",
+            attrs: {
+              class: displayMode ? "katex-display" : "katex",
+              "data-equation": equation,
+            },
+            body: `$${displayMode ? '$' : ''}${equation}$${displayMode ? '$' : ''}`,
+          };
+        } catch (e) {
+          console.warn("Math rendering fallback:", e);
+          // Fall back to regular code display
+        }
+      }
       return {
         name: "tt",
         body: cleanTags(mapRender(t.children!)),
       };
+    }
     case "BulletList":
       return {
         name: "ul",

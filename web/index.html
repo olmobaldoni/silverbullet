@@ -1,28 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: https://ogp.me/ns#">
+
 <head>
-    <meta charset="utf-8"/>
-    <meta
-            content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
-            name="viewport"
-    />
-    <base href="{{HOST_URL_PREFIX}}/"/>
-    <link href=".client/logo.png" rel="apple-touch-icon"/>
-    <meta
-            content="#e1e1e1"
-            media="(prefers-color-scheme: light)"
-            name="theme-color"
-    />
-    <meta
-            content="#262626"
-            media="(prefers-color-scheme: dark)"
-            name="theme-color"
-    />
-    <meta content="no-referrer" name="referrer"/>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        name="viewport" />
+    <base href="{{HOST_URL_PREFIX}}/" />
+    <link href=".client/logo.png" rel="apple-touch-icon" />
+    <meta content="#e1e1e1" media="(prefers-color-scheme: light)" name="theme-color" />
+    <meta content="#262626" media="(prefers-color-scheme: dark)" name="theme-color" />
+    <meta content="no-referrer" name="referrer" />
 
     <title>{{TITLE}}</title>
-    <meta content=".client/logo.png" property="og:image"/>
-    <meta content="{{DESCRIPTION}}" property="og:description"/>
+    <meta content=".client/logo.png" property="og:image" />
+    <meta content="{{DESCRIPTION}}" property="og:description" />
 
     <script>
         // Some global variables we need to make this work
@@ -51,24 +42,33 @@
             },
         };
     </script>
-    <link href=".client/main.css" rel="stylesheet"/>
+    <link href=".client/main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
+        integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"
+        integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS2Kkqp9L9Tyk6aABe"
+        crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/mhchem.min.js"
+        integrity="sha384-VbPJ8+Tq2y4QrWHb+5f3NJTJZSTNj3xpFOI6QYTqYo8XG9lAuLMKTVGx5n0Lrq"
+        crossorigin="anonymous"></script>
     <style id="custom-styles"></style>
     <script src=".client/client.js" type="module"></script>
-    <link crossorigin="use-credentials" href=".client/manifest.json" rel="manifest"/>
-    <link href=".client/favicon.png" rel="icon" type="image/x-icon"/>
+    <link crossorigin="use-credentials" href=".client/manifest.json" rel="manifest" />
+    <link href=".client/favicon.png" rel="icon" type="image/x-icon" />
 </head>
 
 <body>
-<div id="sb-root">
-    <div id="sb-main">
-        <div id="sb-editor">
-            <div class="cm-editor">
-                <div class="cm-content">
-                    {{CONTENT}}
+    <div id="sb-root">
+        <div id="sb-main">
+            <div id="sb-editor">
+                <div class="cm-editor">
+                    <div class="cm-content">
+                        {{CONTENT}}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </body>
+
 </html>

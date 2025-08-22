@@ -15,8 +15,9 @@ import { TaskList } from "./extended_task.ts";
 import { Table } from "./table_parser.ts";
 import { pWikiLinkRegex, tagRegex } from "./constants.ts";
 import { parse } from "./parse_tree.ts";
-import type { ParseTree } from "@silverbulletmd/silverbullet/lib/tree";
+import type { ParseTree } from "../../plug-api/lib/tree.ts";
 import { luaLanguage } from "../../lib/space_lua/parse.ts";
+import { inlineMathParser, blockMathParser } from "./math-parser.ts";
 
 const WikiLink: MarkdownConfig = {
   defineNodes: [
@@ -375,6 +376,12 @@ export const FrontMatter: MarkdownConfig = {
   }],
 };
 
+const Math: MarkdownConfig = {
+  defineNodes: [],
+  parseInline: [inlineMathParser],
+  parseBlock: [blockMathParser],
+};
+
 export const extendedMarkdownLanguage = markdown({
   extensions: [
     WikiLink,
@@ -390,6 +397,7 @@ export const extendedMarkdownLanguage = markdown({
     TaskDeadline,
     Superscript,
     Subscript,
+    Math,
     {
       props: [
         foldNodeProp.add({

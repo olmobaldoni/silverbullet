@@ -54,6 +54,7 @@
     "npm:gitignore-parser@0.0.2": "0.0.2",
     "npm:idb@8.0.3": "8.0.3",
     "npm:js-yaml@4.1.0": "4.1.0",
+    "npm:katex@0.16.11": "0.16.11",
     "npm:porter-stemmer@0.9.1": "0.9.1",
     "npm:preact-feather@4.2.1": "4.2.1_preact@10.26.9",
     "npm:preact@10.23.1": "10.23.1",
@@ -365,6 +366,9 @@
     "argparse@2.0.1": {
       "integrity": "sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q=="
     },
+    "commander@8.3.0": {
+      "integrity": "sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww=="
+    },
     "crelt@1.0.6": {
       "integrity": "sha512-VQ2MBenTq1fWZUH9DJNGti7kKv6EeAuYr3cLwxUWhIu1baTaXh4Ib5W2CqHVqib4/MqbYGJqiL3Zb8GJZr3l4g=="
     },
@@ -395,6 +399,13 @@
     },
     "json-schema-traverse@1.0.0": {
       "integrity": "sha512-NM8/P9n3XjXhIZn1lLhkFaACTOURQXjWhV4BA/RnOv8xvgqtqpAX9IO4mRQxSx1Rlo4tqzeqb0sOlruaOy3dug=="
+    },
+    "katex@0.16.11": {
+      "integrity": "sha512-RQrI8rlHY92OLf3rho/Ts8i/XvjgguEjOkO1BEXcU3N8BqPpSzBNwV/G0Ukr+P/l3ivvJUE/Fa/CwbS6HesGNQ==",
+      "dependencies": [
+        "commander"
+      ],
+      "bin": true
     },
     "porter-stemmer@0.9.1": {
       "integrity": "sha512-vnSYgMMWKMo0+zCUumdcQAYE2RD55k2b27sPySqseetSRaGtXCCktv3llCB4EXyU1nQApMM5u+rGwVWcW72AHg=="
@@ -563,6 +574,7 @@
       "npm:gitignore-parser@0.0.2",
       "npm:idb@8.0.3",
       "npm:js-yaml@4.1.0",
+      "npm:katex@0.16.11",
       "npm:porter-stemmer@0.9.1",
       "npm:preact-feather@4.2.1",
       "npm:preact@10.26.4",

@@ -14,7 +14,8 @@ import { frontmatterPlugin } from "./frontmatter.ts";
 import { cleanEscapePlugin } from "./escapes.ts";
 import { luaDirectivePlugin } from "./lua_directive.ts";
 import { hashtagPlugin } from "./hashtag.ts";
-import type { ClickEvent } from "@silverbulletmd/silverbullet/type/client";
+import { renderMath } from "./render-maths.ts";
+import type { ClickEvent } from "../../type/client.ts";
 
 export function cleanModePlugins(client: Client) {
   return [
@@ -46,5 +47,6 @@ export function cleanModePlugins(client: Client) {
     cleanEscapePlugin(),
     luaDirectivePlugin(client),
     hashtagPlugin(),
+    ...renderMath,
   ] as Extension[];
 }
